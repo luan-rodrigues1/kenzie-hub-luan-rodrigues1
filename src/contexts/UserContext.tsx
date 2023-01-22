@@ -1,19 +1,11 @@
 import { createContext } from "react";
 import { ReactNode } from "react";
+import { useNavigate } from "react-router";
+import { postRegister } from "../services/postRegistration";
 
 
 interface IUserProvidersProps {
     children: ReactNode;
-}
-
-export interface IRegisterUser {
-    email: string;
-    password: string;
-    name: string;
-    bio: string;
-    contact: string;
-    module: string;
-    confirmPassword: string;
 }
 
 export interface ILoginUser {
@@ -31,8 +23,20 @@ export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserProvidersProps) => {
 
-    const registerUser = (data: any) => {
+    const navigate = useNavigate();
+
+    const registerUser = async (data: any) => {
         console.log(data)
+
+        try {
+            const teste = await postRegister(data);
+            // toast.success("Conta criada com sucesso!");
+            // navigate("/");
+            console.log(teste)
+        } catch (error) {
+            // toast.error("Ops! Algo deu errado");
+            console.log(error)
+        }
     }
 
     const loginUser = (data: any) => {

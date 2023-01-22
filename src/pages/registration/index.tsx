@@ -3,15 +3,15 @@ import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { IRegisterUser } from "../../contexts/UserContext";
 import { formRegistrationSchema } from "../../schemas/user.schemas";
+import { IRegister } from "../../services/postRegistration";
 
 
 const Registration =  () => {
 
     const { registerUser } = useContext(UserContext);
 
-    const {register, handleSubmit, formState: { errors }} = useForm<IRegisterUser>({
+    const {register, handleSubmit, formState: { errors }} = useForm<IRegister>({
         resolver: yupResolver(formRegistrationSchema),
     });
 
@@ -41,7 +41,7 @@ const Registration =  () => {
                     <input id="contact" type="text" placeholder="Opção de contato" {...register("contact")}/>
                     <p className="headline">{errors.contact?.message}</p>
                     <label htmlFor="module">Selecionar módulo</label>
-                    <select id="module" {...register("module")}>
+                    <select id="module" {...register("course_module")}>
                         <option value="Primeiro Módulo">Primeiro Módulo</option>
                         <option value="Segundo módulo">Segundo módulo</option>
                         <option value="Terceiro módulo">Terceiro módulo</option>
