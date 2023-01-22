@@ -1,14 +1,15 @@
 import Logo from "../../assets/Logo.png"
 import { Link } from "react-router-dom"
+import { HeaderStyle } from "./style"
 
 const Header = ({nameButton}: any) => {
     return (
-        <header>
+        <HeaderStyle>
             <nav>
                 <img src={Logo} alt="Logo Kenzie Hub"/>
-                <Link to={nameButton === "Voltar" ? "/" : "/dashboard"}>{nameButton}</Link>
+                <Link className="headlineBold" to={nameButton === "Voltar" ? "/" : "/dashboard"}>{nameButton}</Link>
             </nav>
-        </header>
+        </HeaderStyle>
     )
 }
 
