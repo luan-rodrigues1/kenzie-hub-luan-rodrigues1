@@ -4,7 +4,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { formRegistrationSchema } from "../../schemas/user.schemas";
-import { IRegister } from "../../services/postRegistration";
+import { IRegister } from "../../interfaces/user.interfaces";
 
 
 const Registration =  () => {

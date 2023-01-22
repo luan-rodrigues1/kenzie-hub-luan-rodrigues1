@@ -3,14 +3,14 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import Logo from "../../assets/Logo.png"
 import { UserContext } from "../../contexts/UserContext";
-import { ILoginUser } from "../../contexts/UserContext";
 import { formLoginSchema } from "../../schemas/user.schemas";
+import { ILogin } from "../../interfaces/user.interfaces";
 
 const Login =  () => {
 
     const { loginUser } = useContext(UserContext);
 
-    const {register, handleSubmit, formState: { errors }} = useForm<ILoginUser>({
+    const {register, handleSubmit, formState: { errors }} = useForm<ILogin>({
         resolver: yupResolver(formLoginSchema),
     });
 

@@ -1,17 +1,9 @@
 import api from "./api";
+import { IRegisterResponse } from "../interfaces/user.interfaces";
+import { IRegister } from "../interfaces/user.interfaces";
 
-export interface IRegister {
-    email: string;
-    password: string;
-    name: string;
-    bio: string;
-    contact: string;
-    course_module: string;
-    confirmPassword?: string;
-}
-
-export async function postRegister(body: IRegister): Promise<IRegister> {
-    const { data } = await api.post<IRegister>(`/users`, body);
+export async function postRegister(body: IRegister): Promise<IRegisterResponse> {
+    const { data } = await api.post<IRegisterResponse>(`/users`, body);
 
     return data;
 }
