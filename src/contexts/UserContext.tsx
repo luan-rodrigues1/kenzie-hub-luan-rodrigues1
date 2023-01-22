@@ -1,23 +1,37 @@
 import { createContext } from "react";
 import { ReactNode } from "react";
-import {useForm} from "react-hook-form"
+
 
 interface IUserProvidersProps {
     children: ReactNode;
 }
 
-interface IUserContext {
+export interface IRegisterUser {
+    email: string;
+    password: string;
+    name: string;
+    bio: string;
+    contact: string;
+    module: string;
+    confirmPassword: string;
+}
+
+export interface IUserContext {
+    registerUser: (data: any) => void
 
 }
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
-const UserProvider = ({ children }: IUserProvidersProps) => {
+export const UserProvider = ({ children }: IUserProvidersProps) => {
 
+    const registerUser = (data: any) => {
+        console.log(data)
+    }
 
     return (
         <UserContext.Provider value={{
-
+            registerUser
         }}>
           {children}
         </UserContext.Provider>
