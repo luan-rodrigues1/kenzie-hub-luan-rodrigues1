@@ -5,6 +5,7 @@ import Logo from "../../assets/Logo.png"
 import { UserContext } from "../../contexts/UserContext";
 import { formLoginSchema } from "../../schemas/user.schemas";
 import { ILogin } from "../../interfaces/user.interfaces";
+import { Link } from "react-router-dom";
 
 const Login =  () => {
 
@@ -28,7 +29,7 @@ const Login =  () => {
                     <button>Entrar</button>
                 </form>
                 <span>Ainda não possui uma conta?</span>
-                <button>Cadastre-se</button>
+                <Link to={"/registration"}>Cadastre-se</Link>
             </section>
         </main>
     )

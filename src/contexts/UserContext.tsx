@@ -35,7 +35,8 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
         try {
             const teste = await postLogin(data);
             // toast.success("Conta criada com sucesso!");
-            // navigate("/");
+            // navigate("/dashboard");
+            console.log("deu certo")
             console.log(teste)
         } catch (error) {
             // toast.error("Ops! Algo deu errado");
