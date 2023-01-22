@@ -21,3 +21,8 @@ export const formRegistrationSchema = yup.object().shape({
     contact: yup.string().required("Campo obrigatório"),
     course_module: yup.string().required("Campo obrigatório"),
 });
+
+export const formLoginSchema = yup.object().shape({
+    email: yup.string().required("Email obrigatório").email("Email inválido"),
+    password: yup.string().required("Senha obrigatório"),
+});

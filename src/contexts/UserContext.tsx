@@ -16,8 +16,14 @@ export interface IRegisterUser {
     confirmPassword: string;
 }
 
+export interface ILoginUser {
+    email: string;
+    password: string;
+}
+
 export interface IUserContext {
     registerUser: (data: any) => void
+    loginUser: (data: any) => void
 
 }
 
@@ -29,9 +35,14 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
         console.log(data)
     }
 
+    const loginUser = (data: any) => {
+        console.log(data)
+    }
+
     return (
         <UserContext.Provider value={{
-            registerUser
+            registerUser,
+            loginUser
         }}>
           {children}
         </UserContext.Provider>
