@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { ReactNode } from "react";
 import { useNavigate } from "react-router";
 import { postLogin } from "../services/postLogin";
@@ -9,11 +9,22 @@ interface IUserProvidersProps {
 export interface IUserContext {
     registerUser: (data: any) => void
     loginUser: (data: any) => void
+    loginVisibility: boolean
+    setLoginVisibility: React.Dispatch<React.SetStateAction<boolean>>
+    registrationVisibility: boolean
+    setRegistrationVisibility: React.Dispatch<React.SetStateAction<boolean>>
+    confirmVisibility: boolean
+    setConfirmVisibility: React.Dispatch<React.SetStateAction<boolean>>
+    visibilitySwitch: (place: string) => void
 }
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserProvidersProps) => {
+
+    const [loginVisibility, setLoginVisibility] = useState<boolean>(false)
+    const [registrationVisibility, setRegistrationVisibility] = useState<boolean>(false)
+    const [confirmVisibility, setConfirmVisibility] = useState<boolean>(false)
 
     const navigate = useNavigate();
 
@@ -44,10 +55,40 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
         }
     }
 
+    const visibilitySwitch = (place: string) => {
+        if(place === "login") {
+            if(loginVisibility){
+                return setLoginVisibility(false)
+            } 
+            return setLoginVisibility(true)
+        }
+
+        if(place === "registration") {
+            if(registrationVisibility){
+                return setRegistrationVisibility(false)
+            } 
+            return setRegistrationVisibility(true)
+        }
+
+        if(place === "confirm") {
+            if(confirmVisibility){
+                return setConfirmVisibility(false)
+            } 
+            return setConfirmVisibility(true)
+        }
+    }
+
     return (
         <UserContext.Provider value={{
             registerUser,
-            loginUser
+            loginUser,
+            loginVisibility,
+            setLoginVisibility,
+            registrationVisibility,
+            setRegistrationVisibility,
+            confirmVisibility,
+            setConfirmVisibility,
+            visibilitySwitch
         }}>
           {children}
         </UserContext.Provider>

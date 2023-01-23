@@ -6,32 +6,40 @@ import { UserContext } from "../../contexts/UserContext";
 import { formLoginSchema } from "../../schemas/user.schemas";
 import { ILogin } from "../../interfaces/user.interfaces";
 import { Link } from "react-router-dom";
+import { LoginStyle } from "./style";
+import openEye from "../../assets/openeye1.png"
 
 const Login =  () => {
 
-    const { loginUser } = useContext(UserContext);
+    const { loginUser, loginVisibility, visibilitySwitch } = useContext(UserContext);
 
     const {register, handleSubmit, formState: { errors }} = useForm<ILogin>({
         resolver: yupResolver(formLoginSchema),
     });
 
     return (
-        <main>
-            <img src={Logo} alt="Logo Kenzie Hub"/>
-            <section>
+        <LoginStyle>
+            <div>
+                <img src={Logo} alt="Logo Kenzie Hub"/>
+            </div>
+            <section className="conatinerLogin">
+                <h2 className="title2">Login</h2>
                 <form action="" onSubmit={handleSubmit(loginUser)}>
-                    <label htmlFor="emailLogin">Email</label>
+                    <label className="headline" htmlFor="emailLogin">Email</label>
                     <input id="emailLogin" type="text" placeholder="Digite aqui seu email" {...register("email")}/>
                     <p className="headline">{errors.email?.message}</p>
-                    <label htmlFor="passwordLogin">Senha</label>
-                    <input id="passwordLogin" type="password" placeholder="Digite aqui sua senha" {...register("password")}/>
+                    <label className="headline" htmlFor="passwordLogin">Senha</label>
+                    <div>
+                        <input id="passwordLogin" type={loginVisibility ? "text" : "password" } placeholder="Digite aqui sua senha" {...register("password")}/>
+                        <img onClick={()=> visibilitySwitch("login")} src={openEye} alt="botão de visibilidade da senha" />
+                    </div>
                     <p className="headline">{errors.password?.message}</p>
-                    <button>Entrar</button>
+                    <button className="title2">Entrar</button>
                 </form>
-                <span>Ainda não possui uma conta?</span>
-                <Link to={"/registration"}>Cadastre-se</Link>
+                <span className="HeadlineItalic">Ainda não possui uma conta?</span>
+                <Link className="title2" to={"/registration"}>Cadastre-se</Link>
             </section>
-        </main>
+        </LoginStyle>
     )
 }
 
