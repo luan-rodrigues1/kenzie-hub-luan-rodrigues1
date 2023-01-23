@@ -27,7 +27,7 @@ const Registration =  () => {
                     <input id="name" type="text" placeholder="Digite aqui seu nome" {...register("name")}/>
                     <p className="headline">{errors.name?.message}</p>
                     <label className="headline" htmlFor="email">Email</label>
-                    <input id="email" type="email" placeholder="Digite aqui seu email" {...register("email")}/>
+                    <input id="email" type="text" placeholder="Digite aqui seu email" {...register("email")}/>
                     <p className="headline">{errors.email?.message}</p>
                     <label className="headline" htmlFor="password">Senha</label>
                     <input id="password" type="password" placeholder="Digite aqui sua Senha" {...register("password")}/>
@@ -48,7 +48,7 @@ const Registration =  () => {
                         <option value="Terceiro módulo">Terceiro módulo</option>
                         <option value="Quarto módulo">Quarto módulo</option>
                     </select>
-                    <button type="submit">Cadastrar</button>
+                    <button className="title2" type="submit">Cadastrar</button>
                 </form>
             </section>
         </RegisterStyle>

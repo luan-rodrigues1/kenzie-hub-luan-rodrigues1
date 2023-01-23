@@ -6,6 +6,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { formLoginSchema } from "../../schemas/user.schemas";
 import { ILogin } from "../../interfaces/user.interfaces";
 import { Link } from "react-router-dom";
+import { LoginStyle } from "./style";
 
 const Login =  () => {
 
@@ -16,22 +17,25 @@ const Login =  () => {
     });
 
     return (
-        <main>
-            <img src={Logo} alt="Logo Kenzie Hub"/>
-            <section>
+        <LoginStyle>
+            <div>
+                <img src={Logo} alt="Logo Kenzie Hub"/>
+            </div>
+            <section className="conatinerLogin">
+                <h2 className="title2">Login</h2>
                 <form action="" onSubmit={handleSubmit(loginUser)}>
-                    <label htmlFor="emailLogin">Email</label>
+                    <label className="headline" htmlFor="emailLogin">Email</label>
                     <input id="emailLogin" type="text" placeholder="Digite aqui seu email" {...register("email")}/>
                     <p className="headline">{errors.email?.message}</p>
-                    <label htmlFor="passwordLogin">Senha</label>
+                    <label className="headline" htmlFor="passwordLogin">Senha</label>
                     <input id="passwordLogin" type="password" placeholder="Digite aqui sua senha" {...register("password")}/>
                     <p className="headline">{errors.password?.message}</p>
-                    <button>Entrar</button>
+                    <button className="title2">Entrar</button>
                 </form>
-                <span>Ainda não possui uma conta?</span>
-                <Link to={"/registration"}>Cadastre-se</Link>
+                <span className="HeadlineItalic">Ainda não possui uma conta?</span>
+                <Link className="title2" to={"/registration"}>Cadastre-se</Link>
             </section>
-        </main>
+        </LoginStyle>
     )
 }
 
