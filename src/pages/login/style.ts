@@ -51,6 +51,33 @@ export const LoginStyle = styled.main`
         color: var(--grey-0);
     }
 
+    .conatinerLogin > form > div {
+        width: 100%;
+        height: 40px;
+        margin: 10px 0 4px 0;
+        background-color: var(--grey-2);
+        border: none;
+        border-radius: 3px;
+        color: var(--grey-0);
+        position: relative;
+    }
+
+    .conatinerLogin > form > div > img {
+        position: absolute;
+        top: 40%;
+        left: 91%;
+        cursor: pointer;
+    }
+
+    .conatinerLogin > form > div > input {
+        width: 100%;
+        background-color: var(--grey-2);
+        border: none;
+        border-radius: 3px;
+        padding-left: 8px;
+        color: var(--grey-0);
+    }
+
     .conatinerLogin > form > p {
         color: var(--negative-feedback);
     }

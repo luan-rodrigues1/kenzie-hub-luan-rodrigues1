@@ -5,7 +5,7 @@ export const formRegistrationSchema = yup.object().shape({
     email: yup.string().required("Email obrigatório").email("Email inválido"),
     password: yup
       .string()
-      .required("Senha obrigatório")
+      .required("Senha obrigatória")
       .min(8, "Mínimo  de 8 caracteres")
       .matches(/[A-Z]/, "Deve conter ao menos uma letra maiúscula")
       .matches(/[a-z]/, "Deve conter ao menos uma letra minuscula")
@@ -24,5 +24,5 @@ export const formRegistrationSchema = yup.object().shape({
 
 export const formLoginSchema = yup.object().shape({
     email: yup.string().required("Email obrigatório").email("Email inválido"),
-    password: yup.string().required("Senha obrigatório"),
+    password: yup.string().required("Senha obrigatória"),
 });
