@@ -6,6 +6,8 @@ import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from './contexts/UserContext';
 import { GlobalStyle } from './styles/global';
 import { TypographyStyle } from './styles/typography';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,6 +19,10 @@ root.render(
         <GlobalStyle/>
         <TypographyStyle/>
         <App />
+        <ToastContainer
+          autoClose={1700}
+          theme="dark"
+        />
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>

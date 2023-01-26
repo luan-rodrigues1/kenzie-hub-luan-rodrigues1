@@ -41,7 +41,7 @@ export const RegisterStyle = styled.div`
         color: var(--grey-0);
     }
 
-    .conatinerLogin > form > div {
+    .conatinerRegistration > form > div {
         width: 100%;
         height: 40px;
         margin: 10px 0 4px 0;
@@ -52,11 +52,21 @@ export const RegisterStyle = styled.div`
         position: relative;
     }
 
-    .conatinerLogin > form > div > img {
+    .conatinerRegistration > form > div > img {
         position: absolute;
         top: 40%;
         left: 91%;
         cursor: pointer;
+    }
+
+    .inputDiv{
+        width: 97%;
+        height: 100%;
+        background-color: var(--grey-2);
+        border: none;
+        border-radius: 3px;
+        padding-left: 8px;
+        color: var(--grey-0);
     }
 
     .conatinerRegistration > form > input {
