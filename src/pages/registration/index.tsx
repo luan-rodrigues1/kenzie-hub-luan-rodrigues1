@@ -11,7 +11,7 @@ import openEye from "../../assets/openeye1.png"
 
 const Registration =  () => {
 
-    const { registerUser, registrationVisibility, confirmVisibility, visibilitySwitch } = useContext(UserContext);
+    const { registerUser, registrationVisibility, confirmVisibility, visibilitySwitch, loadingRegistration } = useContext(UserContext);
 
     const {register, handleSubmit, formState: { errors }} = useForm<IRegister>({
         resolver: yupResolver(formRegistrationSchema),
@@ -55,7 +55,11 @@ const Registration =  () => {
                         <option value="Terceiro módulo">Terceiro módulo</option>
                         <option value="Quarto módulo">Quarto módulo</option>
                     </select>
-                    <button className="title2" type="submit">Cadastrar</button>
+                    {loadingRegistration ? 
+                        <button className="title2" type="submit" disabled><span className="loading"></span></button>
+                        :
+                        <button className="title2" type="submit">Cadastrar</button>
+                    }
                 </form>
             </section>
         </RegisterStyle>
