@@ -17,6 +17,8 @@ export interface IUserContext {
     confirmVisibility: boolean
     setConfirmVisibility: React.Dispatch<React.SetStateAction<boolean>>
     visibilitySwitch: (place: string) => void
+    loadingLogin: boolean
+    setLoadingLogin: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
@@ -27,6 +29,7 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
     const [registrationVisibility, setRegistrationVisibility] = useState<boolean>(false)
     const [confirmVisibility, setConfirmVisibility] = useState<boolean>(false)
     // const [userLooggedInfo, setUserLooggedInfo] = useState<any>(null)
+    const [loadingLogin, setLoadingLogin] = useState<boolean>(false)
 
     const navigate = useNavigate();
 
@@ -45,6 +48,8 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
     }
 
     const loginUser = async (data: any) => {
+        setLoadingLogin(true)
+
         try {
             const loginInfo = await postLogin(data);
             toast.success("Login realizado com sucesso!");
@@ -52,10 +57,14 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
             window.localStorage.setItem("TOKEN", loginInfo.token);
             window.localStorage.setItem("USERID", loginInfo.user.id);
             // setUserLooggedInfo(loginInfo)
+
+            setLoadingLogin(false)
+
             navigate("/dashboard");
             // console.log(loginInfo)
         } catch (error) {
             toast.error("Ops! Algo deu errado");
+            setLoadingLogin(false)
             console.log(error)
         }
     }
@@ -93,7 +102,9 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
             setRegistrationVisibility,
             confirmVisibility,
             setConfirmVisibility,
-            visibilitySwitch
+            visibilitySwitch,
+            loadingLogin,
+            setLoadingLogin
         }}>
           {children}
         </UserContext.Provider>

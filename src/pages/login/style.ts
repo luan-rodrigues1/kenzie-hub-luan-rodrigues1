@@ -82,7 +82,10 @@ export const LoginStyle = styled.main`
         color: var(--negative-feedback);
     }
 
-    .conatinerLogin > form > button {
+    .buttonLogin {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 40px;
         background-color: var(--color-primary);
         color: var(--grey-0);
@@ -91,7 +94,19 @@ export const LoginStyle = styled.main`
         margin: 15px 0 20px 0;
     }
 
-    .conatinerLogin > form > button:hover {
+    .buttonLoginDisabled {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        background-color: var(--color-primary-Negative);
+        color: var(--grey-0);
+        border: none;
+        border-radius: 3px;
+        margin: 15px 0 20px 0;
+    }
+
+    .buttonLogin:hover {
         background-color: var(--color-primary-Focus);
     }
 
