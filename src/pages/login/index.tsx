@@ -11,7 +11,7 @@ import openEye from "../../assets/openeye1.png"
 
 const Login =  () => {
 
-    const { loginUser, loginVisibility, visibilitySwitch } = useContext(UserContext);
+    const { loginUser, loginVisibility, visibilitySwitch, loadingLogin } = useContext(UserContext);
 
     const {register, handleSubmit, formState: { errors }} = useForm<ILogin>({
         resolver: yupResolver(formLoginSchema),
@@ -34,7 +34,7 @@ const Login =  () => {
                         <img onClick={()=> visibilitySwitch("login")} src={openEye} alt="botão de visibilidade da senha" />
                     </div>
                     <p className="headline">{errors.password?.message}</p>
-                    <button className="title2">Entrar</button>
+                    <button className={loadingLogin ? "title2 buttonLoginDisabled" : "title2 buttonLogin"} >{loadingLogin ? <span className="loading"></span> : "Entrar"}</button>
                 </form>
                 <span className="HeadlineItalic">Ainda não possui uma conta?</span>
                 <Link className="title2" to={"/registration"}>Cadastre-se</Link>

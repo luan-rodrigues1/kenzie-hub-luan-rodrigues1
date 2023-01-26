@@ -61,6 +61,22 @@ body {
     background-color: var(--grey-4);
 }
 
+.loading {
+    animation: is-rotating 1s infinite;
+    display: flex;
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--grey-1);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+}
+
+@keyframes is-rotating {
+    to {
+        transform: rotate(1turn);
+    }
+}
+
 :root{
     --color-primary: #FF577F;
     --color-primary-Focus: #FF427F;
