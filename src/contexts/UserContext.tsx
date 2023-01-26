@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { ReactNode } from "react";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 import { postLogin } from "../services/postLogin";
 import { postRegister } from "../services/postRegistration";
 interface IUserProvidersProps {
@@ -25,6 +26,7 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
     const [loginVisibility, setLoginVisibility] = useState<boolean>(false)
     const [registrationVisibility, setRegistrationVisibility] = useState<boolean>(false)
     const [confirmVisibility, setConfirmVisibility] = useState<boolean>(false)
+    // const [userLooggedInfo, setUserLooggedInfo] = useState<any>(null)
 
     const navigate = useNavigate();
 
@@ -33,24 +35,27 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
 
         try {
             const teste = await postRegister(data);
-            // toast.success("Conta criada com sucesso!");
+            toast.success("Conta criada com sucesso!");
             navigate("/");
             console.log(teste)
         } catch (error) {
-            // toast.error("Ops! Algo deu errado");
+            toast.error("Ops! Algo deu errado");
             console.log(error)
         }
     }
 
     const loginUser = async (data: any) => {
         try {
-            const teste = await postLogin(data);
-            // toast.success("Conta criada com sucesso!");
-            // navigate("/dashboard");
-            console.log("deu certo")
-            console.log(teste)
+            const loginInfo = await postLogin(data);
+            toast.success("Login realizado com sucesso!");
+            window.localStorage.clear();
+            window.localStorage.setItem("TOKEN", loginInfo.token);
+            window.localStorage.setItem("USERID", loginInfo.user.id);
+            // setUserLooggedInfo(loginInfo)
+            navigate("/dashboard");
+            // console.log(loginInfo)
         } catch (error) {
-            // toast.error("Ops! Algo deu errado");
+            toast.error("Ops! Algo deu errado");
             console.log(error)
         }
     }
