@@ -6,11 +6,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { formRegistrationSchema } from "../../schemas/user.schemas";
 import { IRegister } from "../../interfaces/user.interfaces";
 import { RegisterStyle } from "./style";
+import openEye from "../../assets/openeye1.png"
 
 
 const Registration =  () => {
 
-    const { registerUser } = useContext(UserContext);
+    const { registerUser, registrationVisibility, confirmVisibility, visibilitySwitch } = useContext(UserContext);
 
     const {register, handleSubmit, formState: { errors }} = useForm<IRegister>({
         resolver: yupResolver(formRegistrationSchema),
@@ -30,10 +31,16 @@ const Registration =  () => {
                     <input id="email" type="text" placeholder="Digite aqui seu email" {...register("email")}/>
                     <p className="headline">{errors.email?.message}</p>
                     <label className="headline" htmlFor="password">Senha</label>
-                    <input id="password" type="password" placeholder="Digite aqui sua Senha" {...register("password")}/>
+                    <div>
+                        <input className="inputDiv" id="password" type={registrationVisibility ? "text" : "password" } placeholder="Digite aqui sua Senha" {...register("password")}/>
+                        <img onClick={()=> visibilitySwitch("registration")} src={openEye} alt="botão de visibilidade da senha" />
+                    </div>
                     <p className="headline">{errors.password?.message}</p>
                     <label className="headline"  htmlFor="confirmPassword">Confirmar Senha</label>
-                    <input id="confirmPassword" type="password" placeholder="Digite novamente sua senha" {...register("confirmPassword")}/>
+                    <div>
+                        <input className="inputDiv" id="confirmPassword" type={confirmVisibility ? "text" : "password" } placeholder="Digite novamente sua senha" {...register("confirmPassword")}/>
+                        <img onClick={()=> visibilitySwitch("confirm")} src={openEye} alt="botão de visibilidade da senha" />
+                    </div>
                     <p className="headline">{errors.confirmPassword?.message}</p>
                     <label className="headline"  htmlFor="bio">Bio</label>
                     <input id="bio" type="text" placeholder="Fale sobre você" {...register("bio")}/>
