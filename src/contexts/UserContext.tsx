@@ -19,6 +19,8 @@ export interface IUserContext {
     visibilitySwitch: (place: string) => void
     loadingLogin: boolean
     setLoadingLogin: React.Dispatch<React.SetStateAction<boolean>>
+    loadingRegistration: boolean
+    setLoadingRegistration: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
@@ -30,19 +32,22 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
     const [confirmVisibility, setConfirmVisibility] = useState<boolean>(false)
     // const [userLooggedInfo, setUserLooggedInfo] = useState<any>(null)
     const [loadingLogin, setLoadingLogin] = useState<boolean>(false)
+    const [loadingRegistration, setLoadingRegistration] = useState<boolean>(false)
 
     const navigate = useNavigate();
 
     const registerUser = async (data: any) => {
-        console.log(data)
+        setLoadingRegistration(true)
 
         try {
             const teste = await postRegister(data);
             toast.success("Conta criada com sucesso!");
+            setLoadingRegistration(false)
             navigate("/");
             console.log(teste)
         } catch (error) {
             toast.error("Ops! Algo deu errado");
+            setLoadingRegistration(false)
             console.log(error)
         }
     }
@@ -59,9 +64,7 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
             // setUserLooggedInfo(loginInfo)
 
             setLoadingLogin(false)
-
-            navigate("/dashboard");
-            // console.log(loginInfo)
+            navigate("/dashboard")
         } catch (error) {
             toast.error("Ops! Algo deu errado");
             setLoadingLogin(false)
@@ -104,7 +107,9 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
             setConfirmVisibility,
             visibilitySwitch,
             loadingLogin,
-            setLoadingLogin
+            setLoadingLogin,
+            loadingRegistration,
+            setLoadingRegistration
         }}>
           {children}
         </UserContext.Provider>

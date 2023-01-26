@@ -106,5 +106,16 @@ export const RegisterStyle = styled.div`
         background-color: var(--color-primary-Focus);
     }
 
+    .conatinerRegistration > form > button:disabled {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 45px;
+        background-color: var(--color-primary-Negative);
+        color: var(--grey-0);
+        border: none;
+        border-radius: 3px;
+        margin: 20px 0 20px 0;
+    }
 
 `;
