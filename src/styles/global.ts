@@ -77,6 +77,17 @@ body {
     }
 }
 
+@keyframes modalAnimation {
+    0% {
+      opacity: 0;
+      transform: translateY(-60%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
+
 :root{
     --color-primary: #FF577F;
     --color-primary-Focus: #FF427F;

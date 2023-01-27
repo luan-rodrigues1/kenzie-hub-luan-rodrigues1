@@ -5,7 +5,7 @@ export const HeaderStyle = styled.header`
     display: flex;
     justify-content: center;
     margin: ${({itemRef}) => itemRef === "Sair" ? "20px auto 0 auto" : "40px auto 25px auto"};
-    padding-bottom: ${({itemRef}) => itemRef === "Sair" ? "20px" : "0"};;
+    padding-bottom: ${({itemRef}) => itemRef === "Sair" ? "30px" : "0"};;
     border-bottom: ${({itemRef}) => itemRef === "Sair" ? "solid var(--grey-3) 1.5px" : "none"};
 
     nav {
@@ -13,7 +13,7 @@ export const HeaderStyle = styled.header`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        max-width: ${({itemRef}) => itemRef === "Sair" ? "900px" : "400px"};
+        max-width: ${({itemRef}) => itemRef === "Sair" ? "1000px" : "400px"};
     }
 
     nav > a {

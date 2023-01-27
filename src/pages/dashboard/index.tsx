@@ -1,15 +1,24 @@
 import Header from "../../components/Header"
+import ModalAddTech from "../../components/ModalAddTech"
 import TechnologiesList from "../../components/TechnologiesList"
+import ModalUpdateTech from "../../components/ModalUpdateTech"
+import { DashboardStyle } from "../../pages/dashboard/style"
 
 const Dashboard =  () => {
     return (
         <>
-            <Header nameButton="Sair"/>
-            <section>
-                <h2>Olá, nome do usuario</h2>
-                <p>Nome do modulo que o usuario se encontra</p>
-            </section>
-            <TechnologiesList/>
+            <DashboardStyle>
+                <Header nameButton="Sair"/>
+                <section className="containerInfoUser">
+                    <div>
+                        <h2 className="title1">Olá, nome do usuario</h2>
+                        <p className="headline">Nome do modulo que o usuario se encontra</p>
+                    </div>
+                </section>
+                <TechnologiesList/>
+            </DashboardStyle>
+            {/* <ModalAddTech/> */}
+            <ModalUpdateTech/>
         </>
     )
 }

@@ -2,6 +2,7 @@ import Logo from "../../assets/Logo.png"
 import { Link } from "react-router-dom"
 import { HeaderStyle } from "./style"
 
+
 const Header = ({nameButton}: any) => {
     console.log(nameButton)
     return (
