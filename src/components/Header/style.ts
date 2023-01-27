@@ -1,17 +1,19 @@
 import styled from "styled-components";
 
 export const HeaderStyle = styled.header`
-    width: 95%;
-    margin: 40px auto 25px auto ;
+    width: 100%;
     display: flex;
     justify-content: center;
+    margin: ${({itemRef}) => itemRef === "Sair" ? "20px auto 0 auto" : "40px auto 25px auto"};
+    padding-bottom: ${({itemRef}) => itemRef === "Sair" ? "20px" : "0"};;
+    border-bottom: ${({itemRef}) => itemRef === "Sair" ? "solid var(--grey-3) 1.5px" : "none"};
 
     nav {
-        width: 100%;
-        max-width: 400px;
+        width: 95%;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        max-width: ${({itemRef}) => itemRef === "Sair" ? "900px" : "400px"};
     }
 
     nav > a {
