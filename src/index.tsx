@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from './contexts/UserContext';
+import { AuthProvider } from './contexts/AuthContext';
 import { GlobalStyle } from './styles/global';
 import { TypographyStyle } from './styles/typography';
 import { ToastContainer } from 'react-toastify';
@@ -16,13 +17,15 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <GlobalStyle/>
-        <TypographyStyle/>
-        <App />
-        <ToastContainer
-          autoClose={1700}
-          theme="dark"
-        />
+          <AuthProvider>
+            <GlobalStyle/>
+            <TypographyStyle/>
+            <App />
+            <ToastContainer
+              autoClose={1700}
+              theme="dark"
+            />
+          </AuthProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>

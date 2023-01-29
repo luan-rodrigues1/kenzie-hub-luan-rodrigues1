@@ -4,7 +4,6 @@ import { HeaderStyle } from "./style"
 
 
 const Header = ({nameButton}: any) => {
-    console.log(nameButton)
     return (
         <HeaderStyle itemRef={nameButton} >
             <nav>
