@@ -24,6 +24,7 @@ export interface IUserContext {
     setLoadingRegistration: React.Dispatch<React.SetStateAction<boolean>>
     isLogged: IInfoUser | null
     setIsLogged: React.Dispatch<React.SetStateAction<IInfoUser | null>>
+    logoutUser: () => void
 
 }
 
@@ -75,6 +76,11 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
         }
     }
 
+    const logoutUser = () => {
+        window.localStorage.clear()
+        return navigate("/")
+    }
+
     const visibilitySwitch = (place: string) => {
         if(place === "login") {
             if(loginVisibility){
@@ -114,7 +120,8 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
             loadingRegistration,
             setLoadingRegistration,
             isLogged,
-            setIsLogged
+            setIsLogged,
+            logoutUser
         }}>
           {children}
         </UserContext.Provider>

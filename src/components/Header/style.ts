@@ -30,5 +30,21 @@ export const HeaderStyle = styled.header`
     nav > a:hover {
         background-color: var(--grey-2);
     }
+
+    nav > button {
+        width: 70px;
+        height: 35px;
+        background-color: var(--grey-3);
+        color: var(--grey-0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        border-radius: 3px;
+    }
+
+    nav > button:hover {
+        background-color: var(--grey-2);
+    }
     
 `;

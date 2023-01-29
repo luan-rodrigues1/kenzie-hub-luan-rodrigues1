@@ -3,8 +3,11 @@ import ModalAddTech from "../../components/ModalAddTech"
 import TechnologiesList from "../../components/TechnologiesList"
 import ModalUpdateTech from "../../components/ModalUpdateTech"
 import { DashboardStyle } from "../../pages/dashboard/style"
+import { useContext } from "react"
+import { UserContext } from "../../contexts/UserContext"
 
 const Dashboard =  () => {
+
     return (
         <>
             <DashboardStyle>
