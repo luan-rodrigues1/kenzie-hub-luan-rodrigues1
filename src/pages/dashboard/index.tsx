@@ -7,6 +7,7 @@ import { useContext } from "react"
 import { UserContext } from "../../contexts/UserContext"
 
 const Dashboard =  () => {
+    const { isLogged } = useContext(UserContext);
 
     return (
         <>
@@ -14,13 +15,13 @@ const Dashboard =  () => {
                 <Header nameButton="Sair"/>
                 <section className="containerInfoUser">
                     <div>
-                        <h2 className="title1">Olá, nome do usuario</h2>
-                        <p className="headline">Nome do modulo que o usuario se encontra</p>
+                        <h2 className="title1">Olá, {isLogged?.user.name!}</h2>
+                        <p className="headline">{isLogged?.user.course_module!}</p>
                     </div>
                 </section>
                 <TechnologiesList/>
             </DashboardStyle>
-            {/* <ModalAddTech/> */}
+            <ModalAddTech/>
             <ModalUpdateTech/>
         </>
     )

@@ -1,10 +1,15 @@
+import { useContext } from "react";
+import { TechContext } from "../../contexts/TechContext";
 import { ModalUpdateTechStyle } from "./style"
 const ModalUpdateTech = () => {
+
+    const { updateAdd, setUpdateAdd } = useContext(TechContext);
+
     return (
-        <ModalUpdateTechStyle>
+        <ModalUpdateTechStyle hidden={updateAdd}>
             <div className="titileUpdate">
                 <h2 className="headlineBold">Tecnologia Detalhes</h2>
-                <button>X</button>
+                <button onClick={()=> setUpdateAdd(false)}>X</button>
             </div>
             <form action="">
                 <label className="headline" htmlFor="">Nome do projeto</label>

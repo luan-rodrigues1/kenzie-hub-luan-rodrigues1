@@ -5,6 +5,7 @@ import App from './App';
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from './contexts/UserContext';
 import { AuthProvider } from './contexts/AuthContext';
+import { TechProvider } from './contexts/TechContext';
 import { GlobalStyle } from './styles/global';
 import { TypographyStyle } from './styles/typography';
 import { ToastContainer } from 'react-toastify';
@@ -18,13 +19,15 @@ root.render(
     <BrowserRouter>
       <UserProvider>
           <AuthProvider>
-            <GlobalStyle/>
-            <TypographyStyle/>
-            <App />
-            <ToastContainer
-              autoClose={1700}
-              theme="dark"
-            />
+            <TechProvider>
+              <GlobalStyle/>
+              <TypographyStyle/>
+              <App />
+              <ToastContainer
+                autoClose={1700}
+                theme="dark"
+              />
+            </TechProvider>
           </AuthProvider>
       </UserProvider>
     </BrowserRouter>

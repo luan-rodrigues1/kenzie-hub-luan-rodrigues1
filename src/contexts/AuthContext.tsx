@@ -40,6 +40,7 @@ export const AuthProvider = ({ children }: IAuthProvidersProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+
     return (
         <AuthContext.Provider value={{
             loading,
