@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import { ReactNode } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import { IInfoUser } from "../interfaces/user.interfaces";
 import { postLogin } from "../services/postLogin";
 import { postRegister } from "../services/postRegistration";
 interface IUserProvidersProps {
@@ -21,6 +22,9 @@ export interface IUserContext {
     setLoadingLogin: React.Dispatch<React.SetStateAction<boolean>>
     loadingRegistration: boolean
     setLoadingRegistration: React.Dispatch<React.SetStateAction<boolean>>
+    isLogged: IInfoUser | null
+    setIsLogged: React.Dispatch<React.SetStateAction<IInfoUser | null>>
+
 }
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
@@ -30,9 +34,9 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
     const [loginVisibility, setLoginVisibility] = useState<boolean>(false)
     const [registrationVisibility, setRegistrationVisibility] = useState<boolean>(false)
     const [confirmVisibility, setConfirmVisibility] = useState<boolean>(false)
-    // const [userLooggedInfo, setUserLooggedInfo] = useState<any>(null)
     const [loadingLogin, setLoadingLogin] = useState<boolean>(false)
     const [loadingRegistration, setLoadingRegistration] = useState<boolean>(false)
+    const [isLogged, setIsLogged] = useState<IInfoUser | null>(null);
 
     const navigate = useNavigate();
 
@@ -40,15 +44,14 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
         setLoadingRegistration(true)
 
         try {
-            const teste = await postRegister(data);
+            await postRegister(data);
             toast.success("Conta criada com sucesso!");
             setLoadingRegistration(false)
             navigate("/");
-            console.log(teste)
         } catch (error) {
             toast.error("Ops! Algo deu errado");
             setLoadingRegistration(false)
-            console.log(error)
+            console.error(error)
         }
     }
 
@@ -61,8 +64,8 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
             window.localStorage.clear();
             window.localStorage.setItem("TOKEN", loginInfo.token);
             window.localStorage.setItem("USERID", loginInfo.user.id);
-            // setUserLooggedInfo(loginInfo)
 
+            setIsLogged(loginInfo)
             setLoadingLogin(false)
             navigate("/dashboard")
         } catch (error) {
@@ -109,7 +112,9 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
             loadingLogin,
             setLoadingLogin,
             loadingRegistration,
-            setLoadingRegistration
+            setLoadingRegistration,
+            isLogged,
+            setIsLogged
         }}>
           {children}
         </UserContext.Provider>
