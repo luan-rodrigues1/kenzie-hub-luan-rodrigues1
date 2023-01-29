@@ -1,18 +1,35 @@
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { TechContext } from "../../contexts/TechContext";
+import { IAddTech } from "../../interfaces/tech.interface";
+import { formAddTechSchema } from "../../schemas/tech.schemas";
 import { ModalAddTechStyle } from "./style"
 
 const ModalAddTech = () => {
+
+    const { modalAdd, setModalAdd, addTechUser } = useContext(TechContext);
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+      } = useForm<IAddTech>({
+        resolver: yupResolver(formAddTechSchema),
+    });
+
     return (
-        <ModalAddTechStyle>
+        <ModalAddTechStyle hidden={modalAdd}>
             <div className="titileAdd">
                 <h2 className="headlineBold">Cadastrar Tecnologia</h2>
-                <button>X</button>
+                <button onClick={() => setModalAdd(false)}>X</button>
             </div>
-            <form action="">
-                <label className="headline" htmlFor="">Nome</label>
-                <input type="text" placeholder="Digiti aqui..."/>
-                <p className="HeadlineItalic">teste</p>
-                <label className="headline" htmlFor="">Selecionar status</label>
-                <select name="" id="">
+            <form action="" onSubmit={handleSubmit(addTechUser)}>
+                <label className="headline" htmlFor="title">Nome</label>
+                <input id="title" type="text" placeholder="Digiti aqui..." {...register("title")}/>
+                <p className="HeadlineItalic">{errors.title?.message}</p>
+                <label className="headline" htmlFor="status">Selecionar status</label>
+                <select id="status" {...register("status")}>
                     <option value="Iniciante">Iniciante</option>
                     <option value="Intermediário">Intermediário</option>
                     <option value="Avançado">Avançado</option>

@@ -1,7 +1,22 @@
 import styled from "styled-components";
 
 export const ModalUpdateTechStyle = styled.div`
-    width: 100%;
+    ${({hidden}) => !hidden ? "display: none;" 
+            : 
+            `width: 100%;
+            display: flex;
+            flex-direction: column;
+            border-radius: 5px;
+            background-color: var(--grey-3);
+            max-width: 310px;
+            position: fixed;
+            top: 20%;
+            right: -50%;
+            left: -50%;
+            margin: 0 auto;
+            animation: modalAnimation 1s;`
+    };
+    /* width: 100%;
     display: flex;
     flex-direction: column;
     border-radius: 5px;
@@ -12,7 +27,7 @@ export const ModalUpdateTechStyle = styled.div`
     right: -50%;
     left: -50%;
     margin: 0 auto;
-    animation: modalAnimation 1s;
+    animation: modalAnimation 1s; */
 
     .titileUpdate {
         width: 100%;

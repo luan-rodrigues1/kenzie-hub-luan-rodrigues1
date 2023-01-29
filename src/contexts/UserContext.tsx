@@ -1,8 +1,11 @@
+
 import { createContext, useState } from "react";
 import { ReactNode } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import { IRespAddTech } from "../interfaces/tech.interface";
 import { IInfoUser } from "../interfaces/user.interfaces";
+
 import { postLogin } from "../services/postLogin";
 import { postRegister } from "../services/postRegistration";
 interface IUserProvidersProps {
@@ -24,6 +27,11 @@ export interface IUserContext {
     setLoadingRegistration: React.Dispatch<React.SetStateAction<boolean>>
     isLogged: IInfoUser | null
     setIsLogged: React.Dispatch<React.SetStateAction<IInfoUser | null>>
+    logoutUser: () => void
+    techsUser: IRespAddTech[]
+    setTechsUser: React.Dispatch<React.SetStateAction<IRespAddTech[]>>
+    infoUser: IInfoUser | null
+    setInfoUser: React.Dispatch<React.SetStateAction<IInfoUser | null>>
 
 }
 
@@ -37,6 +45,8 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
     const [loadingLogin, setLoadingLogin] = useState<boolean>(false)
     const [loadingRegistration, setLoadingRegistration] = useState<boolean>(false)
     const [isLogged, setIsLogged] = useState<IInfoUser | null>(null);
+    const [techsUser, setTechsUser] = useState<IRespAddTech[]>([]);
+    const [infoUser, setInfoUser] = useState<IInfoUser | null>(null)
 
     const navigate = useNavigate();
 
@@ -73,6 +83,11 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
             setLoadingLogin(false)
             console.log(error)
         }
+    }
+
+    const logoutUser = () => {
+        window.localStorage.clear()
+        return navigate("/")
     }
 
     const visibilitySwitch = (place: string) => {
@@ -114,7 +129,12 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
             loadingRegistration,
             setLoadingRegistration,
             isLogged,
-            setIsLogged
+            setIsLogged,
+            logoutUser,
+            techsUser,
+            setTechsUser,
+            infoUser,
+            setInfoUser
         }}>
           {children}
         </UserContext.Provider>
