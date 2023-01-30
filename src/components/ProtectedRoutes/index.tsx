@@ -12,8 +12,6 @@ const ProtectedRoutes = () => {
         return null;
     }
 
-    
-
     return isLogged ? <Outlet/> : <Navigate to="/" replace />;
 }
 

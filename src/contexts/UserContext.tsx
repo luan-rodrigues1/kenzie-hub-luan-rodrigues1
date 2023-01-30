@@ -3,16 +3,15 @@ import { createContext, useState } from "react";
 import { ReactNode } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import { IInfoUser, IIsLogged } from "../interfaces/user.interfaces";
-
+import {  IIsLogged, ILogin, IRegister } from "../interfaces/user.interfaces";
 import { postLogin } from "../services/postLogin";
 import { postRegister } from "../services/postRegistration";
 interface IUserProvidersProps {
     children: ReactNode;
 }
 export interface IUserContext {
-    registerUser: (data: any) => void
-    loginUser: (data: any) => void
+    registerUser: (data: IRegister) => void
+    loginUser: (data: ILogin) => void
     loginVisibility: boolean
     setLoginVisibility: React.Dispatch<React.SetStateAction<boolean>>
     registrationVisibility: boolean
@@ -43,7 +42,7 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
 
     const navigate = useNavigate();
 
-    const registerUser = async (data: any) => {
+    const registerUser = async (data: IRegister) => {
         setLoadingRegistration(true)
 
         try {
@@ -58,7 +57,7 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
         }
     }
 
-    const loginUser = async (data: any) => {
+    const loginUser = async (data: ILogin) => {
         setLoadingLogin(true)
 
         try {

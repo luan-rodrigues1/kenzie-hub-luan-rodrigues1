@@ -1,7 +1,7 @@
 import { ReactNode, useContext, useState } from "react";
 import { createContext } from "react";
 import { toast } from "react-toastify";
-import { IAddTech } from "../interfaces/tech.interface";
+import { IRespAddTech } from "../interfaces/tech.interface";
 import { deleteTech } from "../services/DeleteTech";
 import { getInfoUser } from "../services/getInfoUser";
 import { postAddTech } from "../services/postAddTech";
@@ -13,7 +13,7 @@ interface ITechProvidersProps {
 }
 
 export interface ITechContext {
-    addTechUser: (body: IAddTech) => Promise<void>
+    addTechUser: (body: IRespAddTech) => Promise<void>
     modalAdd: boolean
     setModalAdd: React.Dispatch<React.SetStateAction<boolean>>
     updateAdd: boolean
@@ -33,7 +33,7 @@ export const TechContext = createContext<ITechContext>({} as ITechContext);
 
 export const TechProvider = ({ children }: ITechProvidersProps) => {
     
-    const { setIsLogged, isLogged} = useContext(UserContext);
+    const { setIsLogged} = useContext(UserContext);
     
     const [modalAdd, setModalAdd] = useState<boolean>(false)
     const [updateAdd, setUpdateAdd] = useState<boolean>(false)
@@ -51,7 +51,7 @@ export const TechProvider = ({ children }: ITechProvidersProps) => {
       }
     }
 
-    const addTechUser = async (body: IAddTech) => {
+    const addTechUser = async (body: IRespAddTech) => {
       try {
         await postAddTech(body);
 
@@ -86,7 +86,7 @@ export const TechProvider = ({ children }: ITechProvidersProps) => {
         updateInfo()
         toast.success("Tecnologia atualizada!");
       } catch(error) {
-        console.log(error)
+        console.error(error)
         toast.error("Ops! Algo deu errado");
       }
 

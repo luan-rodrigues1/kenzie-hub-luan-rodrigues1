@@ -1,4 +1,8 @@
-export interface IAddTech {
+export interface IReqAddTech {
+  title: string,
+  status: string
+}
+export interface IRespAddTech {
   created_at: string;
   id: string;
   status: string;
@@ -6,11 +10,6 @@ export interface IAddTech {
   updated_at: string;
 }
 
-export interface IRespAddTech {
-    id: string;
-    title: string;
-    status: string;
-    user: {
-      id: string;
-    };
+export interface IReqUpdateTech {
+  status: string
 }
