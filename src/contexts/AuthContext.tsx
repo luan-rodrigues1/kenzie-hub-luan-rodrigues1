@@ -16,7 +16,7 @@ export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 export const AuthProvider = ({ children }: IAuthProvidersProps) => {
 
-    const { setIsLogged } = useContext(UserContext);
+    const { setIsLogged} = useContext(UserContext);
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
@@ -39,7 +39,6 @@ export const AuthProvider = ({ children }: IAuthProvidersProps) => {
         loadUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
 
     return (
         <AuthContext.Provider value={{

@@ -3,17 +3,15 @@ import { createContext, useState } from "react";
 import { ReactNode } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import { IRespAddTech } from "../interfaces/tech.interface";
-import { IInfoUser } from "../interfaces/user.interfaces";
-
+import {  IIsLogged, ILogin, IRegister } from "../interfaces/user.interfaces";
 import { postLogin } from "../services/postLogin";
 import { postRegister } from "../services/postRegistration";
 interface IUserProvidersProps {
     children: ReactNode;
 }
 export interface IUserContext {
-    registerUser: (data: any) => void
-    loginUser: (data: any) => void
+    registerUser: (data: IRegister) => void
+    loginUser: (data: ILogin) => void
     loginVisibility: boolean
     setLoginVisibility: React.Dispatch<React.SetStateAction<boolean>>
     registrationVisibility: boolean
@@ -25,14 +23,9 @@ export interface IUserContext {
     setLoadingLogin: React.Dispatch<React.SetStateAction<boolean>>
     loadingRegistration: boolean
     setLoadingRegistration: React.Dispatch<React.SetStateAction<boolean>>
-    isLogged: IInfoUser | null
-    setIsLogged: React.Dispatch<React.SetStateAction<IInfoUser | null>>
+    isLogged: IIsLogged | null
+    setIsLogged: React.Dispatch<React.SetStateAction<IIsLogged | null>>
     logoutUser: () => void
-    techsUser: IRespAddTech[]
-    setTechsUser: React.Dispatch<React.SetStateAction<IRespAddTech[]>>
-    infoUser: IInfoUser | null
-    setInfoUser: React.Dispatch<React.SetStateAction<IInfoUser | null>>
-
 }
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
@@ -44,13 +37,12 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
     const [confirmVisibility, setConfirmVisibility] = useState<boolean>(false)
     const [loadingLogin, setLoadingLogin] = useState<boolean>(false)
     const [loadingRegistration, setLoadingRegistration] = useState<boolean>(false)
-    const [isLogged, setIsLogged] = useState<IInfoUser | null>(null);
-    const [techsUser, setTechsUser] = useState<IRespAddTech[]>([]);
-    const [infoUser, setInfoUser] = useState<IInfoUser | null>(null)
+    const [isLogged, setIsLogged] = useState<IIsLogged | null>(null);
+
 
     const navigate = useNavigate();
 
-    const registerUser = async (data: any) => {
+    const registerUser = async (data: IRegister) => {
         setLoadingRegistration(true)
 
         try {
@@ -65,7 +57,7 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
         }
     }
 
-    const loginUser = async (data: any) => {
+    const loginUser = async (data: ILogin) => {
         setLoadingLogin(true)
 
         try {
@@ -75,13 +67,12 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
             window.localStorage.setItem("TOKEN", loginInfo.token);
             window.localStorage.setItem("USERID", loginInfo.user.id);
 
-            setIsLogged(loginInfo)
+            setIsLogged(loginInfo.user)
             setLoadingLogin(false)
             navigate("/dashboard")
         } catch (error) {
             toast.error("Ops! Algo deu errado");
             setLoadingLogin(false)
-            console.log(error)
         }
     }
 
@@ -113,6 +104,7 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
         }
     }
 
+
     return (
         <UserContext.Provider value={{
             registerUser,
@@ -130,11 +122,7 @@ export const UserProvider = ({ children }: IUserProvidersProps) => {
             setLoadingRegistration,
             isLogged,
             setIsLogged,
-            logoutUser,
-            techsUser,
-            setTechsUser,
-            infoUser,
-            setInfoUser
+            logoutUser
         }}>
           {children}
         </UserContext.Provider>

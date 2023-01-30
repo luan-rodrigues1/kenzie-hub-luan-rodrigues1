@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { TechContext } from "../../contexts/TechContext";
-import { IAddTech } from "../../interfaces/tech.interface";
+import { IRespAddTech } from "../../interfaces/tech.interface";
 import { formAddTechSchema } from "../../schemas/tech.schemas";
 import { ModalAddTechStyle } from "./style"
 
@@ -14,7 +14,7 @@ const ModalAddTech = () => {
         register,
         handleSubmit,
         formState: { errors },
-      } = useForm<IAddTech>({
+      } = useForm<IRespAddTech>({
         resolver: yupResolver(formAddTechSchema),
     });
 

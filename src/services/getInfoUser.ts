@@ -1,9 +1,9 @@
 import api from "./api";
-import { IInfoUser } from "../interfaces/user.interfaces";
+import { IIsLogged } from "../interfaces/user.interfaces";
 
-export async function getInfoUser(): Promise<IInfoUser> {
+export async function getInfoUser(): Promise<IIsLogged> {
     const token = window.localStorage.getItem("TOKEN");
-    const { data } = await api.get<IInfoUser>(`/profile`, {
+    const { data } = await api.get<IIsLogged>(`/profile`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -6,30 +6,26 @@ import { UserContext } from "../../contexts/UserContext";
 
 const TechnologiesCard = () => {
 
-    const { techsUser } = useContext(UserContext);
-    const { setUpdateAdd } = useContext(TechContext);
+    const { isLogged } = useContext(UserContext);
+    const { setUpdateAdd, setSelectTechId, setNameUpdateTech } = useContext(TechContext);
 
     return (
-        // <div className="withoutTechnologies">
-        //         <h1 className="title1">Nenhuma tecnologia cadastrada</h1>
-        //         <img src={sadFace} alt="icone de rosto triste"/>
-        //     </div>
         <>
-            {techsUser[0] === undefined ?
+            {isLogged?.techs[0] === undefined ?
             <div className="withoutTechnologies">
                 <h1 className="title1">Nenhuma tecnologia cadastrada</h1>
                 <img src={sadFace} alt="icone de rosto triste"/>
             </div>
         :
-            <TechnologiesCardStyle>
-                {techsUser.map(el => {
+            <TechnologiesCardStyle >
+                {isLogged?.techs.map(el => {
                     return (
-                        <li key={el.id} onClick={() => setUpdateAdd(true)} className="boxCard">
-                            <div>
-                                <h4 className="title2">{el.title}</h4>
-                                <p className="headline">{el.status}</p>
-                            </div>
-                        </li>
+                            <li key={el.id} onClick={() =>{return (setUpdateAdd(true), setSelectTechId(el.id), setNameUpdateTech(el.title))}} className="boxCard">
+                                <div>
+                                    <h4 className="title2">{el.title}</h4>
+                                    <p className="headline">{el.status}</p>
+                                </div>
+                            </li>
                         )
                 })}
             </TechnologiesCardStyle>
