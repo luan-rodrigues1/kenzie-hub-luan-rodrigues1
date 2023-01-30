@@ -1,6 +1,9 @@
 export interface IAddTech {
-    title: string;
-    status: string;
+  created_at: string;
+  id: string;
+  status: string;
+  title: string;
+  updated_at: string;
 }
 
 export interface IRespAddTech {

@@ -1,3 +1,4 @@
+import { IAddTech } from "./tech.interface";
 export interface IRegisterResponse {
     id: string,
     name: string,
@@ -21,6 +22,7 @@ export interface IRegister {
 }
 
 export interface IInfoUser {
+    token: string;
     user: {
       id: string;
       name: string;
@@ -30,11 +32,24 @@ export interface IInfoUser {
       contact: string;
       created_at: string;
       updated_at: string;
-      techs: [];
+      techs: IAddTech[];
       works: [];
       avatar_url: string | null;
     };
-    token: string;
+}
+
+export interface IIsLogged {
+    id: string;
+    name: string;
+    email: string;
+    course_module: string;
+    bio: string;
+    contact: string;
+    created_at: string;
+    updated_at: string;
+    techs: IAddTech[];
+    works: [];
+    avatar_url: string | null;
 }
 
 export interface ILogin {

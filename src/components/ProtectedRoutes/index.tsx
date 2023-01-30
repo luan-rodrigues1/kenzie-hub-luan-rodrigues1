@@ -12,7 +12,7 @@ const ProtectedRoutes = () => {
         return null;
     }
 
-    console.log(isLogged)
+    
 
     return isLogged ? <Outlet/> : <Navigate to="/" replace />;
 }
