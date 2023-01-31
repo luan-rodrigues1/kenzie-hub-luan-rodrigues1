@@ -97,11 +97,18 @@ export const ModalAddTechStyle = styled.div`
         color: var(--grey-0);
         border: none;
         border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .buttonAdd:hover {
         background-color: var(--color-primary-Focus);
         
+    }
+
+    .buttonAdd:disabled {
+        background-color: var(--color-primary-Negative);
     }
 
     @media (min-width: 768px) {

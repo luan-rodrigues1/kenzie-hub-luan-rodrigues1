@@ -106,11 +106,18 @@ export const ModalUpdateTechStyle = styled.div`
         color: var(--grey-0);
         border: none;
         border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .buttonUpdate:hover {
         background-color: var(--color-primary-Focus);
         
+    }
+
+    .buttonUpdate:disabled {
+        background-color: var(--color-primary-Negative);
     }
 
     .buttonTrash {
@@ -119,9 +126,16 @@ export const ModalUpdateTechStyle = styled.div`
         color: var(--grey-0);
         border: none;
         border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .buttonTrash:hover {
+        background-color: var(--grey-2);
+    }
+
+    .buttonTrash:disabled {
         background-color: var(--grey-2);
     }
 

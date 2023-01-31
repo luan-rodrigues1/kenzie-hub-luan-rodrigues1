@@ -4,7 +4,7 @@ import { ModalUpdateTechStyle } from "./style"
 
 const ModalUpdateTech = () => {
 
-    const { updateAdd, setUpdateAdd, deleteTechUser, setUpdateStatusTech, updateTechUser, nameUpdateTech } = useContext(TechContext);
+    const { updateAdd, setUpdateAdd, deleteTechUser, setUpdateStatusTech, updateTechUser, nameUpdateTech, confirmButtonModal, deleteButtonModal } = useContext(TechContext);
 
     return (
         <ModalUpdateTechStyle hidden={updateAdd}>
@@ -22,8 +22,16 @@ const ModalUpdateTech = () => {
                     <option value="Avançado">Avançado</option>
                 </select>
                 <div>
-                    <button type="button" className="headlineBold buttonUpdate" onClick={() => updateTechUser()}>Salvar alterações</button>
-                    <button type="button" className="buttonTrash" onClick={() => deleteTechUser()}>Excluir</button>
+                    {!confirmButtonModal ?
+                        <button type="button" className="headlineBold buttonUpdate" onClick={() => updateTechUser()}>Salvar alterações</button>
+                        :
+                        <button type="button" className="headlineBold buttonUpdate" disabled onClick={() => updateTechUser()}><span className="loading"></span></button>
+                    }
+                    {!deleteButtonModal ?
+                        <button type="button" className="buttonTrash" onClick={() => deleteTechUser()}>Excluir</button>
+                        :
+                        <button type="button" className="buttonTrash" disabled onClick={() => deleteTechUser()}><span className="loading"></span></button>
+                    }
                 </div>
             </form>
         </ModalUpdateTechStyle>

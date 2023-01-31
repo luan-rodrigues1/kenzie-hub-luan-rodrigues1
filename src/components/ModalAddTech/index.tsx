@@ -8,7 +8,7 @@ import { ModalAddTechStyle } from "./style"
 
 const ModalAddTech = () => {
 
-    const { modalAdd, setModalAdd, addTechUser } = useContext(TechContext);
+    const { modalAdd, setModalAdd, addTechUser, confirmButtonModal } = useContext(TechContext);
 
     const {
         register,
@@ -34,7 +34,11 @@ const ModalAddTech = () => {
                     <option value="Intermediário">Intermediário</option>
                     <option value="Avançado">Avançado</option>
                 </select>
-                <button className="headlineBold buttonAdd">Cadastrar Tecnologia</button>
+                {!confirmButtonModal ? 
+                    <button className="headlineBold buttonAdd">Cadastrar Tecnologia</button>
+                    :
+                    <button className="headlineBold buttonAdd" disabled><span className="loading"></span></button>
+                }
             </form>
         </ModalAddTechStyle>
     )
