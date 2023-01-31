@@ -16,6 +16,11 @@ export const TechnologiesCardStyle = styled.ul`
         margin: 0 auto 15px auto;
         background-color: var(--grey-4);
         border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .boxCard:hover {
+        background-color: var(--grey-2);
     }
 
     .boxCard > div {

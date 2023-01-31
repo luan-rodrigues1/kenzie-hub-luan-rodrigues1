@@ -49,6 +49,7 @@ export const ModalAddTechStyle = styled.div`
         display: flex;
         flex-direction: column;
         padding: 12px 12px;
+        gap: 8px;
     }
 
     form > label {
@@ -81,14 +82,6 @@ export const ModalAddTechStyle = styled.div`
         background-color: var(--grey-2);
     }
 
-    /* form > div {
-        width: 100%;
-        height: 35px;
-        margin-top: 10px;
-        display: flex;
-        justify-content: space-between;
-    } */
-
     .buttonAdd {
         width: 100%;
         height: 35px;
@@ -112,7 +105,7 @@ export const ModalAddTechStyle = styled.div`
     }
 
     @media (min-width: 768px) {
-        max-width: 350px;
+        max-width: 400px;
     }
     
 `

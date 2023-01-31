@@ -60,6 +60,7 @@ export const ModalUpdateTechStyle = styled.div`
         display: flex;
         flex-direction: column;
         padding: 12px 12px;
+        gap: 10px;
     }
 
     form > label {
@@ -140,7 +141,7 @@ export const ModalUpdateTechStyle = styled.div`
     }
 
     @media (min-width: 768px) {
-        max-width: 350px;
+        max-width: 400px;
     }
     
 `
