@@ -1,7 +1,6 @@
 import { ReactNode, useContext, useState } from "react";
 import { createContext } from "react";
 import { toast } from "react-toastify";
-import { IRespAddTech } from "../interfaces/tech.interface";
 import { deleteTech } from "../services/DeleteTech";
 import { getInfoUser } from "../services/getInfoUser";
 import { postAddTech } from "../services/postAddTech";
@@ -13,7 +12,7 @@ interface ITechProvidersProps {
 }
 
 export interface ITechContext {
-    addTechUser: (body: IRespAddTech) => Promise<void>
+    addTechUser: () => Promise<void>
     modalAdd: boolean
     setModalAdd: React.Dispatch<React.SetStateAction<boolean>>
     updateAdd: boolean
@@ -30,6 +29,14 @@ export interface ITechContext {
     setConfirmButtonModal: React.Dispatch<React.SetStateAction<boolean>>
     deleteButtonModal: boolean
     setDeleteButtonModal: React.Dispatch<React.SetStateAction<boolean>>
+    valueTechAdd: string
+    setValueTechAdd: React.Dispatch<React.SetStateAction<string>>
+    selectTechAdd: string
+    setSelectTechAdd: React.Dispatch<React.SetStateAction<string>>
+    errorTech: boolean
+    setErrorTech: React.Dispatch<React.SetStateAction<boolean>>
+    techValidation: () => void | Promise<void>
+
 }
 
 export const TechContext = createContext<ITechContext>({} as ITechContext);
@@ -46,6 +53,9 @@ export const TechProvider = ({ children }: ITechProvidersProps) => {
     const [nameUpdateTech, setNameUpdateTech] = useState<string>("")
     const [confirmButtonModal, setConfirmButtonModal] = useState<boolean>(false)
     const [deleteButtonModal, setDeleteButtonModal] = useState<boolean>(false)
+    const [valueTechAdd, setValueTechAdd] = useState<string>("")
+    const [selectTechAdd, setSelectTechAdd] = useState<string>("")
+    const [errorTech, setErrorTech] = useState<boolean>(false)
 
 
     const updateInfo = async () => {
@@ -57,11 +67,25 @@ export const TechProvider = ({ children }: ITechProvidersProps) => {
       }
     }
 
-    const addTechUser = async (body: IRespAddTech) => {
+    const techValidation = () => {
+
+      if(valueTechAdd.trim() === "" || selectTechAdd.trim() === "") {
+        return setErrorTech(true)
+      }
+
+      return addTechUser()
+    }
+
+    const addTechUser = async () => {
       setConfirmButtonModal(true)
 
+      const data ={
+        title: valueTechAdd,
+        status: selectTechAdd
+      }
+
       try {
-        await postAddTech(body);
+        await postAddTech(data);
 
         updateInfo()
         setConfirmButtonModal(false)
@@ -69,6 +93,7 @@ export const TechProvider = ({ children }: ITechProvidersProps) => {
         toast.success("Tecnologia adicionada!");
       } catch (error) {
         console.error(error);
+        setConfirmButtonModal(false)
         toast.error("Ops! Algo deu errado");
       }
     };
@@ -83,6 +108,7 @@ export const TechProvider = ({ children }: ITechProvidersProps) => {
         setUpdateAdd(false)
         toast.success("Tecnologia removida!");
       } catch (error) {
+        setDeleteButtonModal(false)
         toast.error("Ops! Algo deu errado");
       }
     };
@@ -101,6 +127,7 @@ export const TechProvider = ({ children }: ITechProvidersProps) => {
         toast.success("Tecnologia atualizada!");
       } catch(error) {
         console.error(error)
+        setConfirmButtonModal(false)
         toast.error("Ops! Algo deu errado");
       }
 
@@ -124,7 +151,14 @@ export const TechProvider = ({ children }: ITechProvidersProps) => {
             confirmButtonModal,
             setConfirmButtonModal,
             deleteButtonModal,
-            setDeleteButtonModal
+            setDeleteButtonModal,
+            valueTechAdd,
+            setValueTechAdd,
+            selectTechAdd,
+            setSelectTechAdd,
+            errorTech,
+            setErrorTech,
+            techValidation
         }}>
             {children}
         </TechContext.Provider>

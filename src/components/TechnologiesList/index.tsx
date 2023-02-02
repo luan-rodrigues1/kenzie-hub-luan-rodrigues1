@@ -6,13 +6,13 @@ import { TechnologiesListStyle } from "./style"
 
 const TechnologiesList = () => {
 
-    const { setModalAdd } = useContext(TechContext);
+    const { setModalAdd, setValueTechAdd, setSelectTechAdd, setErrorTech } = useContext(TechContext);
 
     return (
         <TechnologiesListStyle>
             <div className="boxInfoList">
                 <h3 className="title1">Tecnologias</h3>
-                <button onClick={() => setModalAdd(true)}><img src={plus} alt="buttão de adicionar tecnologia" /></button>
+                <button onClick={() => {return (setModalAdd(true), setValueTechAdd(""), setSelectTechAdd("Iniciante"), setErrorTech(false))}}><img src={plus} alt="buttão de adicionar tecnologia" /></button>
             </div>
             <TechnologiesCard/>
         </TechnologiesListStyle>
