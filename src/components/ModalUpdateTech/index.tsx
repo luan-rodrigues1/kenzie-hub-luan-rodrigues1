@@ -4,7 +4,16 @@ import { ModalUpdateTechStyle } from "./style"
 
 const ModalUpdateTech = () => {
 
-    const { updateAdd, setUpdateAdd, deleteTechUser, setUpdateStatusTech, updateTechUser, nameUpdateTech, confirmButtonModal, deleteButtonModal } = useContext(TechContext);
+    const { 
+        updateAdd, 
+        setUpdateAdd, 
+        deleteTechUser, 
+        setUpdateStatusTech, 
+        updateTechUser, 
+        nameUpdateTech, 
+        confirmButtonModal, 
+        deleteButtonModal 
+    } = useContext(TechContext);
 
     return (
         <ModalUpdateTechStyle hidden={updateAdd}>
