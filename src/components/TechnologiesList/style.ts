@@ -28,6 +28,10 @@ export const TechnologiesListStyle = styled.section`
         align-items: center;
     }
 
+    .boxInfoList > button:hover {
+        background-color: var(--grey-2);
+    }
+
     .withoutTechnologies {
         width: 95%;
         height: 80px;

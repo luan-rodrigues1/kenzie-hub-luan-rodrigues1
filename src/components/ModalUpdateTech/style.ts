@@ -60,6 +60,7 @@ export const ModalUpdateTechStyle = styled.div`
         display: flex;
         flex-direction: column;
         padding: 12px 12px;
+        gap: 10px;
     }
 
     form > label {
@@ -106,11 +107,18 @@ export const ModalUpdateTechStyle = styled.div`
         color: var(--grey-0);
         border: none;
         border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .buttonUpdate:hover {
         background-color: var(--color-primary-Focus);
         
+    }
+
+    .buttonUpdate:disabled {
+        background-color: var(--color-primary-Negative);
     }
 
     .buttonTrash {
@@ -119,14 +127,21 @@ export const ModalUpdateTechStyle = styled.div`
         color: var(--grey-0);
         border: none;
         border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .buttonTrash:hover {
         background-color: var(--grey-2);
     }
 
+    .buttonTrash:disabled {
+        background-color: var(--grey-2);
+    }
+
     @media (min-width: 768px) {
-        max-width: 350px;
+        max-width: 400px;
     }
     
 `

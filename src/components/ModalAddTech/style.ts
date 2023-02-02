@@ -49,6 +49,7 @@ export const ModalAddTechStyle = styled.div`
         display: flex;
         flex-direction: column;
         padding: 12px 12px;
+        gap: 8px;
     }
 
     form > label {
@@ -81,14 +82,6 @@ export const ModalAddTechStyle = styled.div`
         background-color: var(--grey-2);
     }
 
-    /* form > div {
-        width: 100%;
-        height: 35px;
-        margin-top: 10px;
-        display: flex;
-        justify-content: space-between;
-    } */
-
     .buttonAdd {
         width: 100%;
         height: 35px;
@@ -97,6 +90,9 @@ export const ModalAddTechStyle = styled.div`
         color: var(--grey-0);
         border: none;
         border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .buttonAdd:hover {
@@ -104,8 +100,12 @@ export const ModalAddTechStyle = styled.div`
         
     }
 
+    .buttonAdd:disabled {
+        background-color: var(--color-primary-Negative);
+    }
+
     @media (min-width: 768px) {
-        max-width: 350px;
+        max-width: 400px;
     }
     
 `
