@@ -17,6 +17,7 @@ Uma plataforma feita com React JS na qual é possível adicionar, deletar e edit
 # Tecnologias e bibliotecas utilizadas
 - React 
 - TypeScript
+- Axios
 - React Router Dom
 - React Hook Form
 - Yup
