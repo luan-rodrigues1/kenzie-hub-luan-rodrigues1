@@ -1,4 +1,4 @@
-# Nu Kenzie
+# Kenzie-Hub
 ###
 # Sobre o projeto
 
